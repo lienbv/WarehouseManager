@@ -1,0 +1,157 @@
+<div class="container-fluid ">
+  <div class="row header" style="background: #000000">
+    <div class="col-md-2 col-xl-2 col-sm-12">
+      <div class="nav-logo">
+        <a [routerLink]="['/home']">
+          <img class="ml-5 logo rounded-circle" src="assets/img/logo1.jpg"  alt=" " width="90px">
+        </a>
+
+      </div>
+    </div>
+    <div class="col-xl-5 col-md-5 col-sm-12 pt-3">
+      <form class="my-2 my-lg-0" [formGroup]="searchProduct" (ngSubmit)="search()">
+        <div class="row m-2">
+          <div class=" col-sm-6 col-md-8">
+            <input class="form-control mr-sm-2" type="text" formControlName="key"
+                   placeholder="Tìm sản phẩm,thương hiệu hay danh mục mà bạn muốn... " aria-label="Search">
+          </div>
+          <div class="col-sm-5 col-md-4">
+            <button class="btn" style="background: #abdde5" type="submit"><i class="fas fa-search"></i> Tìm
+              Kiếm
+            </button>
+          </div>
+        </div>
+      </form>
+      <ngx-slick-carousel class="carousel"
+                          #slickModal="slick-carousel"
+                          [config]="slideConfig"
+                          (init)="slickInit($event)"
+                          (breakpoint)="breakpoint($event)"
+                          (afterChange)="afterChange($event)"
+                          (beforeChange)="beforeChange($event)">
+        <div ngxSlickItem *ngFor="let categories of listCategories" class="slide ">
+          <a class="deal-flash" (click)="searchByCategories(categories.categoryName)">
+            <div class="m-1">
+              <h5 class="suggestion__items-title categoriesList">{{categories.categoryName}}</h5>
+            </div>
+          </a>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+
+    <div class="col-xl-3 col-sm-3 col-md-3 dki-dnhap">
+      <ul class="nav__mobile-list">
+        <li class="nav__mobile-list-user">
+          <p *ngIf="username===''"><i class="fas fa-user"></i><a routerLink="/login">Đăng nhập</a> <label>/</label> <a
+            (click)="openRegistration()">Đăng ký</a>
+          </p>
+          <div *ngIf="username!=''" class="dropdown"><i class="fas fa-user dropbtn"> {{username}}</i>
+            <div class="dropdown-content">
+              <a *ngIf="username ==='admin'" routerLink="/product-list">Quản lý trang Admin</a>
+              <a [routerLink]="['/detail-users', username]">Thông tin cá nhân</a>
+              <a (click)="logOut()">Đăng xuất</a>
+            </div>
+          </div>
+        </li>
+        <hr>
+      </ul>
+    </div>
+    <div class="col-xl-1 col-sm-1 col-md-1">
+      <a routerLink="/detail-cart"><i class="fas fa-shopping-cart cart"></i>
+        <p class="soluongcart">{{totalNumber}}</p></a>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mb-2 body" style="background-color:#FFFAFA;border-radius: 10px ">
+    <div class="row giasoc">
+      <div class="row">
+        <img src="./assets/img/giasoc.svg" class="price-shock" alt="">
+        <img src="./assets/img/dealFlashIcon.svg" alt="" class="flash-icon">
+        <img src="./assets/img/homnay.svg" class="today" alt="">
+      </div>
+    </div>
+    <a href="#" class="time-1">
+      <div class="timer">
+        <span class="hour">{{hour}}</span>
+        :
+        <span class="min">{{min}}</span>
+        :
+        <span class="sec">{{sec}}</span>
+        <img src="./assets/img/ar.png">
+      </div>
+    </a>
+    <ngx-slick-carousel class="carousel"
+                        #slickModal="slick-carousel"
+                        [config]="slideConfig"
+                        (init)="slickInit($event)"
+                        (breakpoint)="breakpoint($event)"
+                        (afterChange)="afterChange($event)"
+                        (beforeChange)="beforeChange($event)">
+      <div ngxSlickItem *ngFor="let list of listCarousel" class="slide">
+        <a class="deal-flash" [routerLink]="['/detail-product', list.productId]">
+          <div class="m-1">
+            <img [src]="'assets/img/' +list.productImage" alt="" width="100%">
+            <h5 class="suggestion__items-title">{{list.productName}}</h5>
+            <p class="card-text text-danger">{{numToString(list.productPrice)}}đ</p>
+          </div>
+          <div class="deal-qty">
+            <div class="deals-progress"></div>
+            <span>Sắp bán hết</span>
+            <img class="fire-icon" src="./assets/img/fire_icon.svg" alt="">
+          </div>
+        </a>
+      </div>
+    </ngx-slick-carousel>
+
+  </div>
+</div>
+<div class="suggestion__body">
+  <div href="#" class="suggestion__items" *ngFor="let list of listProduct">
+    <a class="detail-product"  [routerLink]="['/detail-product', list.productId]">
+      <picture class="suggestion__img-container">
+        <img [src]="'assets/img/' +list.productImage" alt="" class="suggestion__items-img">
+        <!--      <img src="./assets/img/suggestion_img/freeShip.png" alt="" class="suggestion__freeship">-->
+      </picture>
+      <div class="suggestion__items-title">{{list.productName}}</div>
+      <div class="suggestion__items-rate">
+        <div class="rate__stars">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="16" color="#fdd836"
+               height="14" width="14" xmlns="http://www.w3.org/2000/svg" style="color: rgb(253, 216, 54);">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+          </svg>
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="16" color="#fdd836"
+               height="14" width="14" xmlns="http://www.w3.org/2000/svg" style="color: rgb(253, 216, 54);">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+          </svg>
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="16" color="#fdd836"
+               height="14" width="14" xmlns="http://www.w3.org/2000/svg" style="color: rgb(253, 216, 54);">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+          </svg>
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="16" color="#fdd836"
+               height="14" width="14" xmlns="http://www.w3.org/2000/svg" style="color: rgb(253, 216, 54);">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+          </svg>
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" size="16" color="#fdd836"
+               height="14" width="14" xmlns="http://www.w3.org/2000/svg" style="color: rgb(253, 216, 54);">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+          </svg>
+        </div>
+        <div class="suggestion__pseudo"></div>
+        <div class="suggestion__items-sold">Số lượng còn lại {{list.productQuantity}}</div>
+      </div>
+      <div class="suggestion__items-price">
+        <div class="items-price">{{numToString(list.productPrice)}}đ</div>
+        <div class="items-discount">-4%</div>
+      </div>
+    </a>
+    <button class="btn btn-outline-success add" (click)="add(list.productId,list.productName,list.productPrice)">Thêm</button>
+  </div>
+
+</div>
+
+<app-footer></app-footer>
+
+

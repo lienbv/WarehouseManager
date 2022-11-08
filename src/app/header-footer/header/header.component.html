@@ -1,0 +1,47 @@
+<div class="nav">
+  <label for="nav-mobile-input" class="nav_bars-btn">
+    <i class="fas fa-bars"></i>
+  </label>
+  <input hidden type="checkbox" name="" class="nav_input" id="nav-mobile-input">
+  <label for="nav-mobile-input" class="nav_overlay"></label>
+  <nav class="nav-mobile">
+    <label for="nav-mobile-input" class="nav__mobile-close">
+      <i class="fas fa-times"></i>
+    </label>
+    <ul class="nav__mobile-list">
+
+      <li class="nav__mobile-list-user">
+
+        <p><i class="fas fa-user"></i><a href="">Đăng nhập</a> <span>/</span> <a href="">Đăng ký</a></p>
+      </li>
+      <hr>
+
+    </ul>
+  </nav>
+  <div class="nav-logo">
+   <a routerLink="/home"><img class="logo" src="/src/assets/img/logo1.jpg" alt=" " width="90px"></a>
+  </div>
+  <nav class="nav-pc">
+    <ul class="nav__list">
+      <li>
+        <a style="color:#ffac4b" href="" class="nav__link">TRANG CHỦ</a>
+      </li>
+      <li class="options">
+        <a routerLink="/product-list" class="nav__link">SẢN PHẨM</a>
+      </li>
+      <li>
+        <a routerLink="/list-order-admin" class="nav__link">ĐƠN HÀNG</a>
+      </li>
+      <li>
+        <a routerLink="/customer-list" class="nav__link">KHÁCH HÀNG</a>
+      </li>
+      <li>
+        <a routerLink="/employee-list" class="nav__link">NHÂN VIÊN</a>
+      </li>
+      <li>
+        <a href="" class="nav__link"></a>
+      </li>
+    </ul>
+  </nav>
+
+</div>

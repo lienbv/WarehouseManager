@@ -1,0 +1,107 @@
+
+<div class="row mt-1">
+  <div class="col-lg-12 col-sm-12">
+    <div class="container bg-white mt-3 mb-5" style="border-radius: 2%">
+      <h2 mat-dialog-title class="text-center mt-3" style="color: darkblue; font-size: 35px">SỬA KHÁCH HÀNG</h2>
+      <div class="row mt-3">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+          <form class="row g-3 was-validated" [formGroup]="updateCustomer">
+            <div class="row">
+              <div class="mb-3 mt-3 col-md-12">
+                <label for="name" class="form-label">Mã Khách Hàng: </label>
+                <input type="text" class="form-control" id="name" formControlName="idCustomer"
+                       placeholder="Nhập hợp đồng"
+                       readonly>
+              </div>
+              <div class="mb-3 col-md-12">
+                <label for="nameProduct" class="form-label">Tên Khách Hàng: <span
+                  style="color: red">(*)</span></label>
+                <input type="text" class="form-control" id="nameProduct" formControlName="nameCustomer"
+                       placeholder="Nhập tên khách hàng"
+                       required>
+                <div class="alert alert-danger" *ngIf="updateCustomer.get('nameCustomer')?.invalid && updateCustomer.get('nameCustomer')?.touched &&
+           updateCustomer.get('nameCustomer')?.errors?.required">Tên khách hàng không được để trống.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Số Điện Thoại: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="phone"
+                       placeholder="Nhập số điện thoại" required>
+                <div class="alert alert-danger" *ngIf="updateCustomer.get('phone')?.invalid && updateCustomer.get('phone')?.touched &&
+           updateCustomer.get('phone')?.errors?.required">Số điện thoại không được để trống.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Email: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="email"
+                       placeholder="Nhập email" required>
+                <div class="alert alert-danger" *ngIf="updateCustomer.get('email')?.invalid && updateCustomer.get('email')?.touched &&
+           updateCustomer.get('email')?.errors?.required">Email không được để trống.
+                </div>
+                <div class="alert alert-danger" *ngIf="updateCustomer.controls.email?.errors?.pattern">Email không đúng định dạng.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Chứng Minh Thư: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="idCard"
+                       placeholder="Nhập chứng minh thư" required>
+                <div class="alert alert-danger" *ngIf="updateCustomer.get('idCard')?.invalid && updateCustomer.get('idCard')?.touched &&
+           updateCustomer.get('idCard')?.errors?.required">Chứng minh thư không được để trống.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Địa Chỉ: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="address"
+                       placeholder="Nhập địa chỉ" required>
+                <div class="alert alert-danger" *ngIf="updateCustomer.get('address')?.invalid && updateCustomer.get('address')?.touched &&
+           updateCustomer.get('address')?.errors?.required">Địa chỉ không được để trống.
+                </div>
+              </div>
+
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Tài Khoản: </label>
+                <input type="text" class="form-control" formControlName="account"
+                       placeholder="Nhập tài khoản" readonly>
+                <div class="alert alert-danger" *ngIf="updateCustomer.get('account')?.invalid && updateCustomer.get('account')?.touched &&
+           updateCustomer.get('account')?.errors?.required">Email không được để trống.
+                </div>
+                <div class="alert alert-danger" *ngIf="updateCustomer.controls.email?.errors?.pattern">Tài khoản không đúng định dạng.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Mật Khẩu: <span style="color: red">(*)</span></label>
+                <input type="password" class="form-control" formControlName="passwork"
+                       placeholder="Nhập mật khẩu" required>
+                <div class="alert alert-danger" *ngIf="updateCustomer.get('passwork')?.invalid && updateCustomer.get('passwork')?.touched &&
+           updateCustomer.get('passwork')?.errors?.required">Mật khẩu không được để trống.
+                </div>
+              </div>
+
+
+              <div class="col-md-3 mb-3"></div>
+              <div class="col-md-3 mb-3">
+                <button type="reset" class="btn btn-secondary" mat-button mat-dialog-close >Hủy
+                </button>
+              </div>
+              <div class="col-md-4 mb-3">
+                <button type="submit" class="btn btn-success" [mat-dialog-close]="true" cdkFocusInitial
+                        (click)="create()" [disabled]="updateCustomer.invalid">Lưu khách hàng
+                </button>
+              </div>
+              <div class="col-md-3 mb-3"></div>
+            </div>
+            <div class="row">
+
+            </div>
+
+          </form>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

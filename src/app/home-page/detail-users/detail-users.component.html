@@ -1,0 +1,158 @@
+<div class="container-fluid ">
+  <div class="row header" style="background: #000502">
+    <div class="col-md-2 col-xl-2 col-sm-12 col-2">
+      <div class="nav-logo">
+        <a [routerLink]="['/home']">
+          <img class="ml-5" src="assets/img/logo1.jpg" alt=" " width="90px">
+        </a>
+
+      </div>
+    </div>
+    <div class="col-xl-5 col-md-12 col-sm-12 col-5 pt-3">
+      <form class="my-2 my-lg-0" [formGroup]="searchProduct" (ngSubmit)="search()">
+        <div class="row m-2">
+          <div class="col-8 col-sm-8 col-md-8">
+            <input class="form-control mr-sm-2" type="text" formControlName="key"
+                   placeholder="Tìm sản phẩm,thương hiệu hay danh mục mà bạn muốn... " aria-label="Search">
+          </div>
+          <div class="col-4 col-sm-4 col-md-4">
+            <button class="btn" style="background: #abdde5" type="submit"><i class="fas fa-search"></i> Tìm
+              Kiếm
+            </button>
+          </div>
+        </div>
+      </form>
+      <ngx-slick-carousel class="carousel"
+                          #slickModal="slick-carousel"
+                          [config]="slideConfig"
+                          (init)="slickInit($event)"
+                          (breakpoint)="breakpoint($event)"
+                          (afterChange)="afterChange($event)"
+                          (beforeChange)="beforeChange($event)">
+        <div ngxSlickItem *ngFor="let categories of listCategories" class="slide ">
+          <a class="deal-flash" (click)="searchByCategories(categories.categoryName)">
+            <div class="m-1">
+              <h5 class="categoriesList">{{categories.categoryName}}</h5>
+            </div>
+          </a>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+
+    <div class="col-xl-3 col-sm-3 col-md-3 dki-dnhap">
+      <ul class="nav__mobile-list">
+        <li class="nav__mobile-list-user">
+          <p *ngIf="username===''"><i class="fas fa-user"></i><a routerLink="/login">Đăng nhập</a> <label>/</label> <a
+            (click)="openRegistration()">Đăng ký</a>
+          </p>
+          <div *ngIf="username!=''" class="dropdown"><i class="fas fa-user dropbtn"> {{username}}</i>
+            <div class="dropdown-content">
+              <a *ngIf="username ==='admin'" routerLink="/product-list">Quản lý trang Admin</a>
+              <a [routerLink]="['/detail-users', username]">Thông tin cá nhân</a>
+              <a (click)="logOut()">Đăng xuất</a>
+            </div>
+          </div>
+        </li>
+        <hr>
+      </ul>
+    </div>
+    <div class="col-xl-1 col-sm-1 col-md-1">
+      <a routerLink="/detail-cart"><i class="fas fa-shopping-cart cart"></i>
+        <p class="soluongcart">{{totalNumber}}</p></a>
+    </div>
+
+  </div>
+</div>
+<div class="container">
+  <div class="row mt-5">
+    <!--    <div class="col-sm-1 col-1 col-md-1"></div>-->
+    <div class="col-sm-12 col-2 col-md-2">
+      <div class="row">
+        <div class="user-circle"><i class="far fa-user-circle"></i> <b>{{username}}</b>
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn-outline-success btn" (click)="openListOrder(username)">Đơn mua</button>
+        <button class="btn-outline-success btn mt-2"  (click)="OpenChangePass()">Đổi mật khẩu</button>
+      </div>
+    </div>
+    <div class="col-sm-12 col-9 col-md-9" style="background-color: white">
+      <div class="row">
+        <div class="col-12"><h2>Hồ Sơ Của Tôi</h2></div>
+        <div class="col-12" style="margin-left: 20px;margin-top: -9px">
+          <span>Quản lý thông tin hồ sơ để bảo mật tài khoản</span>
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <form class="row g-3 was-validated" [formGroup]="updateCustomer">
+            <div class="mb-3 col-md-12">
+              <label class="form-label">Tài Khoản Đăng Nhập: </label>
+              <input type="text" class="form-control" formControlName="account"
+                     placeholder="Nhập tài khoản" readonly>
+              <div class="alert alert-danger" *ngIf="updateCustomer.get('account')?.invalid && updateCustomer.get('account')?.touched &&
+           updateCustomer.get('account')?.errors?.required">Email không được để trống.
+              </div>
+              <div class="alert alert-danger" *ngIf="updateCustomer.controls.email?.errors?.pattern">Tài khoản không
+                đúng định dạng.
+              </div>
+            </div>
+              <div class="mb-3 col-md-12">
+                <label for="nameProduct" class="form-label">Tên Khách Hàng: <span
+                  style="color: red">(*)</span></label>
+                <input type="text" class="form-control" id="nameProduct" formControlName="nameCustomer"
+                       placeholder="Nhập tên khách hàng"
+                       required>
+                <div class="alert alert-danger" *ngIf="updateCustomer.get('nameCustomer')?.invalid && updateCustomer.get('nameCustomer')?.touched &&
+           updateCustomer.get('nameCustomer')?.errors?.required">Tên khách hàng không được để trống.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Số Điện Thoại: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="phone"
+                       placeholder="Nhập số điện thoại" required>
+                <div class="alert alert-danger" *ngIf="updateCustomer.get('phone')?.invalid && updateCustomer.get('phone')?.touched &&
+           updateCustomer.get('phone')?.errors?.required">Số điện thoại không được để trống.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Email: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="email"
+                       placeholder="Nhập email" required>
+                <div class="alert alert-danger" *ngIf="updateCustomer.get('email')?.invalid && updateCustomer.get('email')?.touched &&
+           updateCustomer.get('email')?.errors?.required">Email không được để trống.
+                </div>
+                <div class="alert alert-danger" *ngIf="updateCustomer.controls.email?.errors?.pattern">Email không đúng
+                  định dạng.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Chứng Minh Thư: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="idCard"
+                       placeholder="Nhập chứng minh thư" required>
+                <div class="alert alert-danger" *ngIf="updateCustomer.get('idCard')?.invalid && updateCustomer.get('idCard')?.touched &&
+           updateCustomer.get('idCard')?.errors?.required">Chứng minh thư không được để trống.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Địa Chỉ: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="address"
+                       placeholder="Nhập địa chỉ" required>
+                <div class="alert alert-danger" *ngIf="updateCustomer.get('address')?.invalid && updateCustomer.get('address')?.touched &&
+           updateCustomer.get('address')?.errors?.required">Địa chỉ không được để trống.
+                </div>
+              </div>
+              <div class="col-md-12 mb-3">
+                <button type="submit" class="btn btn-success" style="text-align: center"
+                        (click)="create()">Lưu
+                </button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

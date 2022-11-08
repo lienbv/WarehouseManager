@@ -1,0 +1,70 @@
+<div class="container-fluid" >
+  <div class="main">
+    <div class="d-flex justify-content-center pt-5 pb-4">
+      <img src="./assets/img/logo1.jpg" alt="" >
+    </div>
+    <p class="h4 text-center" style="color: darkblue; font-size: 35px;">Đổi mật khẩu</p>
+    <div class="d-flex justify-content-center mb-4" *ngIf="isOpenToast">
+      <div class="toast align-items-center text-white bg-danger border-0 show fade" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            Sai tên đăng nhập hoặc mật khẩu.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close" (click)="hideToast()"></button>
+        </div>
+      </div>
+    </div>
+    <div class="row pb-5">
+      <div class="col"></div>
+      <div class="col-4">
+        <form [formGroup]="formChangePassword" (ngSubmit)="doSubmit()">
+          <div  class="mb-4">
+            <label for="username">Tên đăng nhập</label>
+            <input type="text" class="input-custom-1 form-control " [value]="username" id="username" readonly>
+          </div>
+          <div class="mb-4">
+            <label for="password">Mật khẩu<span class="text-danger">(*)</span></label>
+            <input type="password" class="input-custom-1 form-control m-0"
+                   formControlName="password" autocomplete="on" id="password"
+                   [ngClass]="(form.password?.touched || isSubmit ) ? (form.password?.invalid ? 'is-invalid' : '') : ''">
+            <div class="invalid-feedback px-4" *ngIf="form.password?.errors?.required">
+              Mật khẩu không được để trống.
+            </div>
+          </div>
+          <fieldset formGroupName="passwordGroup">
+            <div class="mb-4">
+              <label for="newPassword">Mật khẩu mới<span class="text-danger">(*)</span></label>
+              <input type="password" class="input-custom-1 form-control m-0"
+                     formControlName="newPassword" autocomplete="on" id="newPassword"
+                     [ngClass]="(newPassword?.touched || isSubmit) ? (newPassword?.invalid || formChangePassword.invalid ? 'is-invalid' : '') : ''">
+              <div class="invalid-feedback px-4" *ngIf="newPassword?.errors?.required">
+                Mật khẩu mới không được để trống.
+              </div>
+              <div class="invalid-feedback px-4" *ngIf="formChangePassword.errors?.checkEqualsPassword && !newPassword?.errors?.required">
+                Mật khẩu mới không được trùng với mật khẩu cũ
+              </div>
+              <div class="invalid-feedback px-4" *ngIf="newPassword?.errors?.pattern">
+                Mật khẩu phải có ít nhất một ký tự số, một ký tự đặc biệt, một ký tự thường và có độ dài từ 6-12 ký tự
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="confirmPassword">Xác nhận mật khẩu<span class="text-danger">(*)</span></label>
+              <input type="password" class="input-custom-1 form-control m-0"
+                     formControlName="confirmPassword" autocomplete="on" id="confirmPassword"
+                     [ngClass]="(confirmPassword?.touched || isSubmit) ? (confirmPassword?.invalid || form.passwordGroup ? 'is-invalid' : '') : ''">
+              <div class="invalid-feedback px-4" *ngIf="confirmPassword?.errors?.required">Nhập lại mật khẩu không được để trống.</div>
+              <div class="invalid-feedback px-4" *ngIf="form.passwordGroup?.errors?.checkPassword && !confirmPassword?.errors?.required">
+                Không trùng khớp với mật khẩu mới.
+              </div>
+            </div>
+          </fieldset>
+          <div class="d-flex justify-content-center mt-3 mb-4">
+            <button class="btn btn-login me-2 bg-secondary border-secondary" (click)="cancel()" mat-button mat-dialog-close>Huỷ</button>
+            <button type="submit" class="btn btn-login btn-outline-success mr-2">Cập nhập</button>
+          </div>
+        </form>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
+</div>

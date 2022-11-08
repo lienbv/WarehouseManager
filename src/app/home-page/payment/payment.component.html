@@ -1,0 +1,75 @@
+<div class="container-fluid ">
+  <div class="row header" style="background: #0b0b0b">
+    <div class="col-md-2 col-xl-2 col-sm-12 col-2">
+      <div class="nav-logo">
+        <a [routerLink]="['/home']">
+          <img class="ml-5 rounded-circle" src="assets/img/logo1.jpg" alt=" " width="90px">
+        </a>
+      </div>
+    </div>
+    <div class="col-xl-5 col-md-5 col-sm-5 col-5 pt-3">
+      <h1 class="text-center pt-3" style="color: darkblue; font-size: 35px">THÔNG TIN ĐẶT HÀNG</h1>
+    </div>
+    <div class="col-xl-3 col-sm-3 col-md-3 dki-dnhap"></div>
+</div>
+</div>
+<div class="container-fluid">
+  <form class="row g-3 was-validated mt-3" [formGroup]="createPayment">
+    <div class="row">
+      <div class="mb-3 col-md-12">
+        <label for="nameProduct" class="form-label">Tên Người Nhận : <span
+          style="color: red">(*)</span></label>
+        <input type="text" class="form-control" id="nameProduct" formControlName="userName"
+               placeholder="Nhập tên khách hàng"
+               required>
+        <div class="alert alert-danger" *ngIf="createPayment.get('userName')?.invalid && createPayment.get('userName')?.touched &&
+           createPayment.get('userName')?.errors?.required">Người nhận không được để trống.
+        </div>
+      </div>
+      <div class="mb-3 col-md-12">
+        <label class="form-label">Địa Chỉ Nhận Hàng: <span style="color: red">(*)</span></label>
+        <input type="text" class="form-control" formControlName="address"
+               placeholder="Nhập địa chỉ" required>
+        <div class="alert alert-danger" *ngIf="createPayment.get('address')?.invalid && createPayment.get('address')?.touched &&
+           createPayment.get('address')?.errors?.required">Địa chỉ nhận hàng không được để trống.
+        </div>
+        <div class="alert alert-danger" *ngIf="createPayment.get('address')?.invalid && createPayment.get('address')?.touched &&
+           createPayment.get('address')?.errors?.checkAddress">Địa chỉ nhận hàng không được "Trống".
+        </div>
+      </div>
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Số Điện Thoại Người Nhận: <span style="color: red">(*)</span></label>
+        <input type="text" class="form-control" formControlName="phone"
+               placeholder="Nhập số điện thoại" required>
+        <div class="alert alert-danger" *ngIf="createPayment.get('phone')?.invalid && createPayment.get('phone')?.touched &&
+           createPayment.get('phone')?.errors?.required">Số điện thoại không được để trống.
+        </div>
+        <div class="alert alert-danger" *ngIf="createPayment.controls.phone?.errors?.pattern">Số điện thoại không đúng định dạng.
+        </div>
+      </div>
+      <div class="mb-3 col-md-6">
+        <label class="form-label">Tổng Số Tiền: </label>
+        <input type="text" class="form-control" formControlName="total"
+               placeholder="Tổng số tiền" readonly>
+      </div>
+
+      <div class="col-md-3 mb-3"></div>
+      <div class="col-md-3 mb-3">
+        <button type="reset" class="btn btn-secondary" mat-button mat-dialog-close
+                [routerLink]="['/detail-cart']">Hủy
+        </button>
+      </div>
+      <div class="col-md-3 mb-3">
+        <button type="submit" class="btn btn-success" [mat-dialog-close]="true" cdkFocusInitial
+        (click)="create()" [disabled]="createPayment.invalid" (click)="showSpinner('sp3')">Đặt Hàng
+        </button>
+      </div>
+      <div class="col-md-3 mb-3"></div>
+    </div>
+    <div class="row">
+
+    </div>
+
+  </form>
+</div>
+

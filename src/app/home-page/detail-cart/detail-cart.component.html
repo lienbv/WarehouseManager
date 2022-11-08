@@ -1,0 +1,113 @@
+<div class="container-fluid ">
+  <div class="row header" style="background: #0c0c0c">
+    <div class="col-md-2 col-xl-2 col-sm-12 col-2">
+      <div class="nav-logo">
+        <a [routerLink]="['/home']">
+          <img class="ml-5 rounded-circle" src="assets/img/logo1.jpg" alt=" " width="90px">
+        </a>
+
+      </div>
+    </div>
+    <div class="col-xl-5 col-md-12 col-sm-12 col-5 pt-3">
+      <form class="my-2 my-lg-0" [formGroup]="searchProduct" (ngSubmit)="search()">
+        <div class="row m-2">
+          <div class="col-8 col-sm-8 col-md-8">
+            <input class="form-control mr-sm-2" type="text" formControlName="key"
+                   placeholder="Tìm sản phẩm,thương hiệu hay danh mục mà bạn muốn... " aria-label="Search">
+          </div>
+          <div class="col-4 col-sm-4 col-md-4">
+            <button class="btn" style="background: #abdde5" type="submit"><i class="fas fa-search"></i> Tìm
+              Kiếm
+            </button>
+          </div>
+        </div>
+      </form>
+      <ngx-slick-carousel class="carousel"
+                          #slickModal="slick-carousel"
+                          [config]="slideConfig"
+                          (init)="slickInit($event)"
+                          (breakpoint)="breakpoint($event)"
+                          (afterChange)="afterChange($event)"
+                          (beforeChange)="beforeChange($event)">
+        <div ngxSlickItem *ngFor="let categories of listCategories" class="slide ">
+          <a class="deal-flash" (click)="searchByCategories(categories.categoryName)">
+            <div class="m-1">
+              <h5 class="suggestion__items-title categoriesList">{{categories.categoryName}}</h5>
+            </div>
+          </a>
+        </div>
+      </ngx-slick-carousel>
+    </div>
+
+    <div class="col-xl-3 col-sm-3 col-md-3 dki-dnhap">
+      <ul class="nav__mobile-list">
+        <li class="nav__mobile-list-user">
+          <p *ngIf="username===''"><i class="fas fa-user"></i><a routerLink="/login">Đăng nhập</a> <label>/</label> <a
+            (click)="openRegistration()">Đăng ký</a>
+          </p>
+          <div *ngIf="username!=''" class="dropdown"><i class="fas fa-user dropbtn"> {{username}}</i>
+            <div class="dropdown-content">
+              <a *ngIf="username ==='admin'" routerLink="/product-list">Quản lý trang Admin</a>
+              <a [routerLink]="['/detail-users', username]">Thông tin cá nhân</a>
+              <a (click)="logOut()">Đăng xuất</a>
+            </div>
+          </div>
+        </li>
+        <hr>
+      </ul>
+    </div>
+    <div class="col-xl-1 col-sm-1 col-md-1">
+      <a routerLink="/detail-cart"><i class="fas fa-shopping-cart cart"></i>
+        <p class="soluongcart">{{totalNumber}}</p></a>
+    </div>
+
+  </div>
+</div>
+<div class="container">
+<table id="tableComputer" class="table table-borderless " style="width: 100%" *ngIf="!check">
+  <thead class="table-primary text-center">
+  <tr>
+    <th class="text-center ">Mã SP</th>
+    <th class="text-center ">Tên SP</th>
+    <th class="text-center ">Giá</th>
+    <th class="text-center ">Số Lượng</th>
+    <th class="text-center ">Thành Tiền</th>
+    <th class="text-center ">Chức Năng</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let list of listCart">
+    <th scope="row"  [routerLink]="['/detail-product', list.productId]">{{list.productId}}</th>
+    <td class="text-center ">{{list.tensp}}</td>
+    <td class="text-center ">{{numToString(list.gia)}}đ</td>
+    <td class="text-center ">{{list.productQuantity}}</td>
+    <td class="text-center ">{{numToString(list.gia * list.productQuantity)}}đ</td>
+    <td class="text-center">
+      <button type="button" class=" border-0 btn btn-outline-danger" data-bs-toggle="modal"
+              data-bs-target="#exampleModalDelete" (click)="openDialogDelete(list.productId)"
+      ><i class="fas fa-trash-alt"></i></button>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td class="text-center"><button class="btn btn-outline-danger" *ngIf="!checkList" (click)="deleteAll()">Xóa hết đơn hàng</button></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <th  class="text-danger" scope="row">Tổng Tiền</th>
+    <td class="text-center">{{numToString(toltal)}}đ</td>
+    <td class="text-center" *ngIf="username == '' "><button class="btn btn-outline-info" routerLink="/login">Đăng Nhập Để Thanh Toán</button></td>
+    <td class="text-center" *ngIf="username != ''"><button class="btn btn-outline-info" (click)="OpenPayment()">Thanh Toán</button></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+<ngx-spinner name="sp3" [fullScreen]="true" type="ball-spin-clockwise" size="medium"></ngx-spinner>
+<div class="col-md-3 mb-3"></div>
+<app-footer></app-footer>

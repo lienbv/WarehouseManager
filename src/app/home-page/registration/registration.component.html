@@ -1,0 +1,59 @@
+<div class='bold-line '></div>
+
+<div class='container mdc-dialog__backdrop'>
+  <div class='window'>
+    <div class='overlay'></div>
+    <div class='content'>
+      <form [formGroup]="createCustomer">
+      <div class='welcome'>Xin Chào</div>
+      <div class='input-fields'>
+
+        <label for="nameProduct" class="form-label">Tên Khách Hàng: <span
+          style="color: red">(*)</span></label>
+        <input type="text" class="input-line full-width" id="nameProduct" formControlName="nameCustomer"
+               placeholder="Nhập tên khách hàng"
+               required>
+        <div class="alert alert-danger" *ngIf="createCustomer.get('nameCustomer')?.invalid && createCustomer.get('nameCustomer')?.touched &&
+           createCustomer.get('nameCustomer')?.errors?.required">Tên khách hàng không được để trống.
+        </div>
+        <label class="form-label">Số Điện Thoại: <span style="color: red">(*)</span></label>
+        <input type="text" class="input-line full-width" formControlName="phone"
+               placeholder="Nhập số điện thoại" required>
+        <div class="alert alert-danger" *ngIf="createCustomer.get('phone')?.invalid && createCustomer.get('phone')?.touched &&
+           createCustomer.get('phone')?.errors?.required">Số điện thoại không được để trống.
+        </div>
+        <div class="alert alert-danger" *ngIf="createCustomer.controls.phone?.errors?.pattern">Phone không đúng định dạng.
+        </div>
+        <label class="form-label">Email: <span style="color: red">(*)</span></label>
+        <input type="text" class="input-line full-width" formControlName="email"
+               placeholder="Nhập email" required>
+        <div class="alert alert-danger" *ngIf="createCustomer.get('email')?.invalid && createCustomer.get('email')?.touched &&
+           createCustomer.get('email')?.errors?.required">Email không được để trống.
+        </div>
+        <div class="alert alert-danger" *ngIf="createCustomer.controls.email?.errors?.pattern">Email không đúng định dạng.
+        </div>
+        <label class="form-label">Tài Khoản: <span style="color: red">(*)</span></label>
+        <input type="text" class="input-line full-width" formControlName="account"
+               placeholder="Nhập tài khoản" required>
+        <div class="alert alert-danger" *ngIf="createCustomer.get('account')?.invalid && createCustomer.get('account')?.touched &&
+           createCustomer.get('account')?.errors?.required">Tài khoản không được để trống.
+        </div>
+        <div class="alert alert-danger" *ngIf="createCustomer.controls.account?.errors?.checkExistAccount">Tài khoản đã tồn tại.
+        </div>
+        <label class="form-label">Mật Khẩu: <span style="color: red">(*)</span></label>
+        <input type="password" class="input-line full-width" formControlName="passwork"
+               placeholder="Nhập mật khẩu" required>
+        <div class="alert alert-danger" *ngIf="createCustomer.get('passwork')?.invalid && createCustomer.get('passwork')?.touched &&
+           createCustomer.get('passwork')?.errors?.required">Mật khẩu không được để trống.
+        </div>
+      </div>
+      <div>
+        <button class='ghost-round full-width' [mat-dialog-close]="true" cdkFocusInitial
+                (click)="create()" [disabled]="createCustomer.invalid"  (click)="showSpinner('sp3')">Tạo Tài Khoản</button>
+      </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+

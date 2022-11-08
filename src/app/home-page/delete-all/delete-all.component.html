@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Xác Nhận Xóa Giỏ Hàng</h1>
+<mat-dialog-content>
+  <p>Bạn Có Muốn Xóa Hết Tất Cả?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn btn-info" mat-button mat-dialog-close >Không</button>
+  <button class="bg-danger btn" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="delete()">Xóa</button>
+</mat-dialog-actions>

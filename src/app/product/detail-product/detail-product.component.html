@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Thông tin Sản Phẩm</h1>
+<mat-dialog-content>
+  <p>Mã Sản Phẩm: <span class="text-primary">{{data.productId}}</span></p>
+  <p>Tên Sản Phẩm <span class="text-primary">{{data.productName}}</span></p>
+  <p>Loại Sản Phẩm: <span class="text-primary">{{data.categories.categoryName}}</span></p>
+  <p>Thương Hiệu: <span class="text-primary">{{data.trademark}}</span></p>
+  <p>Giá: <span class="text-primary">{{data.productPrice}}</span></p>
+  <p>Số Lượng: <span class="text-primary">{{data.productQuantity}}</span></p>
+  <p>Tình Trạng: <span class="text-primary" *ngIf="data.productQuantity > 0">Còn Hàng</span>
+    <span class="text-primary" *ngIf="data.productQuantity < 0">Hết Hàng</span></p>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn btn-info" mat-button mat-dialog-close>Đóng</button>
+
+</mat-dialog-actions>

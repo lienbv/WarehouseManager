@@ -1,0 +1,362 @@
+.logo {
+  color: white;
+}
+.nav-logo{
+  margin-top: 1rem;
+}
+.giasoc{
+  margin-left: 3%;
+}
+span{
+  font-size: 14px;
+  /*color:$secondary;*/
+  display: block;
+  }
+
+.checked {
+  color: orange;
+
+}
+.start{
+  display: inline;
+}
+.deal-flash:hover{
+  box-shadow: 0 6px 10px 6px rgba(0, 0, 0, 0.05), 0 8px 12px 8px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  text-decoration: none;
+}
+.slick-slider {
+  width: 88%;
+  margin: auto;
+  /*background: rgb(14, 13, 13);*/
+}
+
+body .slick-prev,
+body .slick-next {
+  height: 45px;
+  width: 40px;
+  background: grey !important;
+  z-index: 100;
+}
+
+
+.flash-icon{
+  width: 21px;
+  animation: 0.8s flash infinite;
+}
+@keyframes flash {
+  50% {
+    opacity: 0.3;
+    transform: scale(1.3);
+  }
+}
+.timer span{
+
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+  margin: 0px 4px;
+  padding: 0 3px;
+  background-color: rgb(255, 66, 78);
+  border-radius: 4px;
+  color: white;
+}
+.timer img{
+  width: 28px;
+  margin-left: -4px;
+}
+.img1{
+  margin-left: 0px;
+}
+/*test*/
+
+.time-1{
+  margin-left: auto;
+}
+.timer{
+  color: rgb(120, 120, 120);
+  font-size: 15px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+/*.sanPham a:hover > img {*/
+/*  margin: 5px auto 25px;*/
+/*}*/
+
+.produit-slide:hover{
+  box-shadow: 0 6px 10px 6px rgba(0, 0, 0, 0.05), 0 8px 12px 8px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+}
+.deal-qty{
+  background-color: rgb(255, 170, 175);
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 20px;
+  margin: 6px 0;
+  z-index: 1;
+
+}
+.deal-qty span{
+  z-index: 3;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 0px 0px 0px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+}
+.deals-progress{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: rgb(255, 66, 78);
+  height: 20px;
+  border-radius: 10px;
+  min-width: 20px;
+  width: 99%;
+  z-index: 2;
+}
+.fire-icon{
+  position: absolute;
+  z-index: 3;
+  width: 24px;
+  height: 24px;
+  bottom: 4px;
+  left: 5px;
+}
+
+.img-hover-zoom img{
+  transform-origin: 0 0;
+  transition: transform .25s, visibility .25s ease-in;
+}
+.img-hover-zoom:hover img{
+  transform: scale(2);
+}
+.suggestion__body{
+  display: flex;
+  flex-wrap: wrap;
+}
+.suggestion__items{
+  position: relative;
+  width: calc(100%/6);
+  text-decoration: none;
+  padding: 12px;
+  background-color: #fff;
+
+}
+.detail-product{
+  text-decoration: none;
+}
+.add{
+  position: absolute;
+  bottom: 5px;
+  right: 12px;
+}
+.suggestion__items:hover{
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  z-index: 0;
+}
+.suggestion__img-container{
+  position: relative;
+}
+.suggestion__items-img{
+  width: 100%;
+}
+.suggestion__freeship{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 80%;
+}
+.suggestion__items-title{
+  font-size: 13px;
+  font-weight: 400;
+  margin: 16px 0 4px;
+  line-height: 20px;
+  color: rgb(56, 56, 61);
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.suggestion__items-rate{
+  display: flex;
+  align-items: center;
+}
+.rate__stars{
+  letter-spacing: -5px;
+}
+.suggestion__items-sold{
+  color: rgb(120, 120, 120);
+  font-size: 11px;
+  line-height: 14px;
+}
+.suggestion__pseudo{
+  width: 1px;
+  height: 9px;
+  background-color: rgb(199, 199, 199);
+  margin: 0 6px;
+}
+.suggestion__items-price{
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+}
+.items-price{
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: rgb(255, 66, 78);
+}
+.items-discount{
+  color: rgb(255, 66, 78);
+  border: 1px solid rgb(255, 66, 78);
+  background-color: rgb(255, 240, 241);
+  padding: 0 2px;
+  line-height: 14px;
+  font-size: 12px;
+  font-weight: 400;
+  margin-left: 8px;
+}
+.nav__mobile-list {
+  margin-top: 24px;
+  list-style: none;
+  font-size: 1rem;
+}
+
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.body{
+  /*position: absolute;*/
+  margin-top: 145px;
+}
+::placeholder {
+  font-size: 70%;
+}
+.nav__mobile-list hr {
+  margin-right: 10px;
+}
+.nav__mobile-list-user {
+  display: flex;
+}
+.nav__mobile-list-user label {
+  color: white;
+  font-size: 20px;
+}
+.nav__mobile-list-user i {
+  font-size: 1.2rem;
+  margin-right: 10px;
+  color: white;
+}
+.nav__mobile-list-user a {
+  list-style: none;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+.shopping {
+  display: flex;
+  position: relative;
+}
+.cart{
+  margin-top: 24px;
+  list-style: none;
+  font-size: 1.9rem;
+  color: white;
+}
+.dki-dnhap{
+  margin-left: 20px;
+}
+.soluongcart{
+  position: absolute;
+  left: 2.6em;
+  bottom: 4em;
+  font-weight: bold;
+  font-size: 1em;
+  color: red;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+
+  background-color: #ffac4b;
+  object-fit: cover;
+}
+
+
+/*dropdown-userName*/
+.dropbtn {
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+.categoriesList{
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 16px 0 4px;
+  line-height: 20px;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+/*@media only screen and (max-width: 600px) {*/
+/*  .header{*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    position: unset;*/
+/*  }*/
+/*  .logo{*/
+/*    width: 50px;*/
+/*  }*/
+/*  .dki-dnhap{*/
+/*    margin-top: 1px;*/
+/*  }*/
+/*}*/
+
+

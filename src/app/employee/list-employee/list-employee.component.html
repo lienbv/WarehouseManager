@@ -1,0 +1,93 @@
+<div class="container-fluid">
+
+  <app-header></app-header>
+  <h2 class="text-center mt-3" style="color: darkblue; font-size: 35px">DANH SÁCH NHÂN VIÊN</h2>
+  <div class="row mt-5 px-0 mx-0" style="height: 80%;">
+    <div class="col-lg-12 col-sm-12">
+      <div class="row">
+        <div class="col-2 col-xl-2 col-sm-2 col-lg-2">
+          <button class="fas fa-plus-circle btn btn-success ml-5" [routerLink]="['/createEmployee']">Thêm Mới Nhân Viên</button>
+        </div>
+      </div>
+      <form [formGroup]="searchEmployee" (ngSubmit)="search()" (keydown)="seacrhEnter($event)">
+        <div class="row mb-2">
+          <div class="col-2 col-xl-2 col-sm-2 col-lg-2">
+          </div>
+          <div class="col-6 col-xl-6 col-sm-6 col-lg-6">
+          </div>
+          <div class="col-lg-3 col-xl-3 col-sm-3">
+            <input type="text" class="form-control border-dark " placeholder="Tìm kiếm..." formControlName="key">
+          </div>
+          <div class="col-lg-1 col-xl-1 col-sm-1">
+            <button type="submit" class="btn btn-success"><i class="fas fa-search-plus"></i></button>
+          </div>
+        </div>
+      </form>
+      <div class="row">
+        <table class="table table-striped table-responsive-md">
+          <thead>
+          <tr>
+            <th class="text-center ">Mã NV</th>
+            <th class="text-center ">Tên NV</th>
+            <th class="text-center ">Ảnh NV</th>
+            <th class="text-center ">Ngày Sinh</th>
+            <th class="text-center ">CMND</th>
+            <th class="text-center ">Lương</th>
+            <th class="text-center ">Số Điện Thoại</th>
+            <th class="text-center ">Địa Chỉ</th>
+            <th class="text-center ">Trình Độ</th>
+            <th class="text-center ">Chức Năng</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let list of listEmployee">
+            <th scope="row">{{list.id}}</th>
+            <td>{{list.nameEmployee}}</td>
+            <td><img [src]="'assets/img/employee/' +list.avatar" alt="" width="150px" height="100px"></td>
+            <td>{{list.dateOfBirth |date: 'dd/MM/yyyy'}}</td>
+            <td>{{list.idCard}}</td>
+            <td>{{list.salary}}</td>
+            <td>{{list.phoneNumber}}</td>
+            <td>{{list.address}}</td>
+            <td>{{list.position?.positionName}}</td>
+            <td class="text-center">
+              <button type="button" class="  border-0  btn btn-outline-warning " data-bs-toggle="modal"
+                      data-bs-target="#exampleModal" (click)="openDialogDetail(list.id)">
+                <i class="fas fa-eye"></i>
+              </button>
+              <button class="  border-0 btn  btn-outline-info" (click)="openDialogEdit(list.id)">
+                <i class="fas fa-pencil-alt"></i></button>
+              <button type="button" class=" border-0 btn btn-outline-danger" data-bs-toggle="modal"
+                      data-bs-target="#exampleModalDelete" (click)="openDialogDelete(list.id)"
+              ><i class="fas fa-trash-alt"></i></button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<nav aria-label="..." class="d-flex justify-content-end mt-3 mr-5">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" (click)="getPage(0)">Đầu</a>
+    </li>
+    <li class="page-item" >
+      <a class="page-link" tabindex="-1" *ngIf="(indexPagination-1)>0" (click)="getPage((indexPagination-2))">Trước</a>
+    </li>
+    <li class="page-item"><a class="page-link" *ngIf="(indexPagination-1)>0" (click)="getPage((indexPagination-2))">{{indexPagination - 1}}</a></li>
+    <li class="page-item active" aria-current="page">
+      <a class="page-link"(click)="getPage((indexPagination-1))">{{indexPagination}}</a>
+    </li>
+    <li class="page-item"><a class="page-link" *ngIf="(indexPagination +1)<= totalPagination" (click)="getPage((indexPagination))">{{indexPagination + 1}}</a></li>
+    <li class="page-item">
+      <a class="page-link" *ngIf="(indexPagination +1)<= totalPagination" (click)="getPage((indexPagination))">Sau</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" (click)="getPage((totalPagination-1))">Cuối</a>
+    </li>
+  </ul>
+</nav>
+<app-footer></app-footer>

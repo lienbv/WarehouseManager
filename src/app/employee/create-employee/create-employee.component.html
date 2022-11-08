@@ -1,0 +1,132 @@
+<app-header></app-header>
+<div class="row mt-1">
+  <div class="col-lg-12 col-sm-12">
+    <div class="container bg-white mt-3 mb-5" style="border-radius: 2%">
+      <h2 mat-dialog-title class="text-center mt-3" style="color: darkblue; font-size: 35px">THÊM NHÂN VIÊN</h2>
+      <div class="row mt-3">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+          <form class="row g-3 was-validated" [formGroup]="createEmployee">
+            <div class="row">
+              <div class="mb-3 col-md-12">
+                <label for="nameProduct" class="form-label">Tên Nhân Viên: <span
+                  style="color: red">(*)</span></label>
+                <input type="text" class="form-control" id="nameProduct" formControlName="nameEmployee"
+                       placeholder="Nhập tên nhân viên"
+                       required>
+                <div class="alert alert-danger" *ngIf="createEmployee.get('nameEmployee')?.invalid && createEmployee.get('nameEmployee')?.touched &&
+           createEmployee.get('nameEmployee')?.errors?.required">Tên nhân viên không được để trống.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Ngày Sinh: <span style="color: red">(*)</span></label>
+                <input type="date" class="form-control" formControlName="dateOfBirth"
+                       placeholder="Nhập số lượng" required>
+                <div class="alert alert-danger" *ngIf="createEmployee.get('dateOfBirth')?.invalid && createEmployee.get('dateOfBirth')?.touched &&
+           createEmployee.get('dateOfBirth')?.errors?.required">Ngày sinh không được để trống.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Số Chứng Minh Thư: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="idCard"
+                       placeholder="Nhập chứng minh thư" required>
+                <div class="alert alert-danger" *ngIf="createEmployee.get('idCard')?.invalid && createEmployee.get('idCard')?.touched &&
+           createEmployee.get('idCard')?.errors?.required">Chứng minh thư không được để trống.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Lương: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="salary"
+                       placeholder="Nhập lương" required>
+                <div class="alert alert-danger" *ngIf="createEmployee.get('salary')?.invalid && createEmployee.get('salary')?.touched &&
+           createEmployee.get('salary')?.errors?.required">Lương không được để trống.
+                </div>
+                <div class="alert alert-danger" *ngIf="createEmployee.controls.salary?.errors?.min">Lương phải lớn hơn hoặc bằng 0.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Số Điện Thoại: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="phoneNumber"
+                       placeholder="Nhập số điện thoại" required>
+                <div class="alert alert-danger" *ngIf="createEmployee.get('phoneNumber')?.invalid && createEmployee.get('phoneNumber')?.touched &&
+           createEmployee.get('phoneNumber')?.errors?.required">Số điện thoại không được để trống.
+                </div>
+
+              </div>
+              <div class="mb-3 col-md-12">
+                <label class="form-label">Ảnh Cá Nhân: <span style="color: red">(*)</span></label>
+                <input type="file" class="form-control" formControlName="avatar"
+                       placeholder="Nhập ảnh cá nhân" required>
+                <div class="alert alert-danger" *ngIf="createEmployee.get('avatar')?.invalid && createEmployee.get('avatar')?.touched &&
+           createEmployee.get('avatar')?.errors?.required">Hình ảnh không được để trống.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Email: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="email"
+                       placeholder="Nhập email" required>
+                <div class="alert alert-danger" *ngIf="createEmployee.get('email')?.invalid && createEmployee.get('email')?.touched &&
+           createEmployee.get('email')?.errors?.required">Email không được để trống.
+                </div>
+                <div class="alert alert-danger" *ngIf="createEmployee.controls.email?.errors?.pattern">Email không đúng định dạng.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Địa chỉ: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="address"
+                       placeholder="Nhập địa chỉ" required>
+                <div class="alert alert-danger" *ngIf="createEmployee.get('address')?.invalid && createEmployee.get('address')?.touched &&
+           createEmployee.get('address')?.errors?.required">Địa chỉ không được để trống.
+                </div>
+              </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label">Cấp Bậc: <span style="color: red">(*)</span></label>
+                <input type="text" class="form-control" formControlName="level"
+                       placeholder="Nhập cấp bậc" required>
+                <div class="alert alert-danger" *ngIf="createEmployee.get('level')?.invalid && createEmployee.get('level')?.touched &&
+           createEmployee.get('level')?.errors?.required">Cấp bậc không được để trống.
+                </div>
+              </div>
+              <div class="mb-3  col-md-6">
+                <label class="form-label ">Bằng Cấp: <span style="color: red">(*)</span></label>
+                <div class="input-group mb-3">
+                  <select class="form-control" formControlName="positionId">
+                    <option value=0>Chọn bằng cấp</option>
+                    <option *ngFor="let position of positionList"
+                            [ngValue]="position?.positionId">{{position.positionName}}</option>
+                  </select>
+                </div>
+                <div *ngIf="createEmployee.controls.positionId.invalid">
+                  <div class="alert alert-danger" *ngIf="createEmployee.controls.positionId.errors?.notNull">Bằng cấp
+                    không được để
+                    trống.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 mb-3"></div>
+              <div class="col-md-3 mb-3">
+                <button type="reset" class="btn btn-secondary" mat-button mat-dialog-close
+                        [routerLink]="['/employee-list']">Hủy
+                </button>
+              </div>
+              <div class="col-md-3 mb-3">
+                <button type="submit" class="btn btn-success" [mat-dialog-close]="true" cdkFocusInitial
+                        (click)="create()">Thêm Nhân Viên
+                </button>
+              </div>
+              <div class="col-md-3 mb-3"></div>
+            </div>
+            <div class="row">
+
+            </div>
+
+          </form>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+

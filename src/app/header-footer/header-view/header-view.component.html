@@ -1,0 +1,47 @@
+<div class="container-fluid ">
+  <div class="row header" style="background: #090909">
+    <div class="col-md-2 col-xl-2 col-sm-2 col-2">
+      <div class="nav-logo">
+        <a [routerLink]="['/home']">
+          <img class="ml-5" src="/src/assets/img/logo1.jpg" alt=" " width="90px">
+        </a>
+
+      </div>
+    </div>
+    <div class="col-xl-5 col-md-5 col-sm-5 col-5 pt-3">
+      <form class="my-2 my-lg-0" [formGroup]="searchProduct" (ngSubmit)="search()">
+        <div class="row m-2">
+          <div class="col-8 col-sm-8 col-md-8">
+            <input class="form-control mr-sm-2" type="text" formControlName="key"
+                   placeholder="Tìm sản phẩm,thương hiệu hay danh mục mà bạn muốn... " aria-label="Search">
+          </div>
+          <div class="col-4 col-sm-4 col-md-4">
+            <button class="btn" style="background: #abdde5" type="submit"><i class="fas fa-search"></i> Tìm
+              Kiếm
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-xl-3 col-sm-3 col-md-3 dki-dnhap">
+      <ul class="nav__mobile-list">
+        <li class="nav__mobile-list-user">
+          <p *ngIf="username===''"><i class="fas fa-user"></i><a routerLink="/login">Đăng nhập</a> <label>/</label> <a
+            href="">Đăng ký</a>
+          </p>
+          <div *ngIf="username!=''" class="dropdown"><i class="fas fa-user dropbtn"> {{username}}</i>
+            <div class="dropdown-content">
+              <a (click)="logOut()">Đăng xuất</a>
+            </div>
+          </div>
+        </li>
+        <hr>
+      </ul>
+    </div>
+    <div class="col-xl-1 col-sm-1 col-md-1">
+      <a routerLink="/detail-cart"><i class="fas fa-shopping-cart cart"></i>
+        <p class="soluongcart">{{totalNumber}}</p></a>
+    </div>
+
+  </div>
+</div>

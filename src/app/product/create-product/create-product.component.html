@@ -1,0 +1,114 @@
+<app-header></app-header>
+<div class="row mt-1">
+  <div class="col-lg-12 col-sm-12">
+    <div class="container bg-white mt-3 mb-5" style="border-radius: 2%">
+      <h2 mat-dialog-title class="text-center mt-3" style="color: darkblue; font-size: 35px">THÊM SẢN PHẨM</h2>
+      <div class="row mt-3">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+          <form class="row g-3 was-validated" [formGroup]="createProduct">
+              <div class="row">
+                <div class="mb-3 col-md-12">
+                  <label for="nameProduct" class="form-label">Tên Sản Phẩm: <span
+                    style="color: red">(*)</span></label>
+                  <input type="text" class="form-control" id="nameProduct" formControlName="productName"
+                         placeholder="Nhập tên sản phẩm"
+                         required>
+                  <div class="alert alert-danger" *ngIf="createProduct.get('productName')?.invalid && createProduct.get('productName')?.touched &&
+           createProduct.get('productName')?.errors?.required">Tên sản phẩm không được để trống.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label">Số Lượng <span style="color: red">(*)</span></label>
+                  <input type="text" class="form-control" formControlName="productQuantity"
+                         placeholder="Nhập số lượng" required>
+                  <div class="alert alert-danger" *ngIf="createProduct.get('productQuantity')?.invalid && createProduct.get('productQuantity')?.touched &&
+           createProduct.get('productQuantity')?.errors?.required">Số lượng không được để trống.
+                  </div>
+                  <div class="alert alert-danger" *ngIf="createProduct.get('productQuantity')?.invalid && createProduct.get('productQuantity')?.touched &&
+           createProduct.get('productQuantity')?.errors?.min">Số lượng phải lớn hơn 0.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label">Giá: <span style="color: red">(*)</span></label>
+                  <input type="text" class="form-control" formControlName="productPrice"
+                         placeholder="Nhập giá đồ" required>
+                  <div class="alert alert-danger" *ngIf="createProduct.get('productPrice')?.invalid && createProduct.get('productPrice')?.touched &&
+           createProduct.get('productPrice')?.errors?.required">Giá không được để trống.
+                  </div>
+                  <div class="alert alert-danger" *ngIf="createProduct.get('productPrice')?.invalid && createProduct.get('productPrice')?.touched &&
+           createProduct.get('productPrice')?.errors?.min">Giá sản phẩm phải lớn hơn 0.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-12">
+                  <label class="form-label">Hình Ảnh Sản Phẩm: <span style="color: red">(*)</span></label>
+                  <input type="file" class="form-control" formControlName="productImage"
+                         placeholder="Nhập đường dẫn" required>
+                  <div class="alert alert-danger" *ngIf="createProduct.get('productImage')?.invalid && createProduct.get('productImage')?.touched &&
+           createProduct.get('productImage')?.errors?.required">Hình ảnh không được để trống.
+                  </div>
+                </div>
+                <div class="mb-3 col-md-12">
+                  <label class="form-label">Mô Tả Sản Phẩm: <span style="color: red">(*)</span></label>
+                  <textarea rows="4" cols="50" class="form-control" formControlName="detail"
+                            placeholder="Nhập mô tả" required></textarea>
+                  <div class="alert alert-danger" *ngIf="createProduct.get('detail')?.invalid && createProduct.get('detail')?.touched &&
+           createProduct.get('detail')?.errors?.required">Mô tả không được để trống.
+                  </div>
+                </div>
+                <div class="mb-3  col-md-6">
+                  <label class="form-label">Thể Loại: <span style="color: red">(*)</span></label>
+                  <div class="input-group mb-3">
+                    <select class="form-control" formControlName="categoriesId">
+                      <option value=0>Chọn thể loại</option>
+                      <option *ngFor="let category of categoryList"
+                              [ngValue]="category.categoryId">{{category.categoryName}}</option>
+                    </select>
+                  </div>
+                  <div *ngIf="createProduct.controls.categoriesId.invalid">
+                    <div class="alert alert-danger"  *ngIf="createProduct.controls.categoriesId.errors?.notNull">Loại đồ không được để
+                      trống.
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <label class="form-label">Thương Hiệu: <span style="color: red">(*)</span></label>
+                  <input type="text" class="form-control mb-3" formControlName="trademark"
+                         placeholder="Nhập thương hiệu" required>
+                  <div class="alert alert-danger" *ngIf="createProduct.get('trademark')?.invalid && createProduct.get('trademark')?.touched &&
+           createProduct.get('trademark')?.errors?.required">Thương hiệu không được để trống.
+                  </div>
+                </div>
+<!--                <div class="col-md-6">-->
+<!--                  <label class="form-label">Thương Hiệu: <span style="color: red">(*)</span></label>-->
+<!--                  <div class="input-group mb-3">-->
+<!--                    <input type="text" class="form-control" formControlName="trademark"-->
+<!--                           placeholder="Nhập thương hiệu" required>-->
+<!--                    <div class="alert alert-danger" *ngIf="createProduct.get('trademark')?.invalid && createProduct.get('trademark')?.touched &&-->
+<!--           createProduct.get('trademark')?.errors?.required">Thương hiệu không được để trống.-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+                <div class="col-md-3 mb-3"></div>
+                <div class="col-md-3 mb-3">
+                  <button type="reset" class="btn btn-secondary" mat-button mat-dialog-close [routerLink]="['/product-list']">Hủy</button>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <button type="submit" class="btn btn-success" [mat-dialog-close]="true" cdkFocusInitial (click)="create()">Lưu sản phẩm
+                  </button>
+                </div>
+                <div class="col-md-3 mb-3"></div>
+              </div>
+              <div class="row">
+
+              </div>
+
+          </form>
+        </div>
+        <div class="col-lg-2"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+

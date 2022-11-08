@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <app-header></app-header>
+  <h2 class="text-center mt-3" style="color: darkblue; font-size: 35px">THỐNG KÊ DOANH THU</h2>
+  <div>
+    <form [formGroup]="checkDateForm" novalidate>
+      <div class="form-row">
+        <div class="form-group col-sm-1">
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="dateDen" style="color: black">Ngày bắt đầu đặt hàng<span aria-hidden="true" class="required" style="color: red">*</span></label>
+          <input type="date" class="form-control "
+                 id="dateDen" placeholder=""
+                 formControlName="checkStartDate"  >
+          <div class="invalid-feedback">Ngày bắt đầu không được trống.</div>
+          <p style="color: #dc3545;font-size: 80%" class="mt-1" *ngIf="checkDateForm.controls.checkStartDate.hasError('required')  &&
+                            checkDateForm.controls.checkStartDate.touched">Ngày bắt đầu không được trống
+            !</p>
+          <p style="color: #dc3545;font-size: 80%" class="mt-1"
+             *ngIf="checkDateForm.errors?.errorDateTo && checkDateForm.controls.checkStartDate.dirty">
+            Ngày bắt đầu phải nhỏ hơn ngày đến !</p>
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="dateEnd" style="color: black">Đến ngày<span aria-hidden="true" class="required" style="color: red">*</span></label>
+          <input type="date" class="form-control "
+                 id="dateEnd" placeholder="Email"
+                 formControlName="checkEndDate">
+          <p style="color: #dc3545;font-size: 80%" class="mt-1" *ngIf="checkDateForm.controls.checkEndDate.hasError('required')   &&
+                            checkDateForm.controls.checkEndDate.touched" >Ngày kết thúc không được trống
+            !</p>
+        </div>
+        <div class="form-group col-sm-2">
+          <input type="submit" class="form-control btn btn-success"
+                 value="Thống kê" (click)="getStatistic()"  [disabled]="checkDateForm.invalid" style="margin-top: 30px">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="chart">
+    <apx-chart *ngIf="check"
+               [series]="chartOptions.series"
+               [chart]="chartOptions.chart"
+               [yaxis]="chartOptions.yaxis"
+               [xaxis]="chartOptions.xaxis"
+               [labels]="chartOptions.labels"
+               [stroke]="chartOptions.stroke"
+               [plotOptions]="chartOptions.plotOptions"
+               [markers]="chartOptions.markers"
+               [fill]="chartOptions.fill"
+               [tooltip]="chartOptions.tooltip"
+    ></apx-chart>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Thông tin nhân viên</h1>
+<mat-dialog-content>
+  <p>Mã Sản Phẩm: <span class="text-primary">{{data.id}}</span></p>
+  <p>Tên Nhân Viên <span class="text-primary">{{data.nameEmployee}}</span></p>
+  <p>Ngày Sinh: <span class="text-primary">{{data.dateOfBirth|date: 'dd/MM/yyyy'}}</span></p>
+  <p>Số Điện Thoại: <span class="text-primary">{{data.phoneNumber}}</span></p>
+  <p>Địa Chỉ: <span class="text-primary">{{data.address}}</span></p>
+  <p>Trình Độ: <span class="text-primary">{{data.position.positionName}}</span></p>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="btn btn-info" mat-button mat-dialog-close>Đóng</button>
+
+</mat-dialog-actions>

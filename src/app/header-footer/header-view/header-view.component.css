@@ -1,0 +1,42 @@
+.nav__mobile-list {
+  margin-top: 24px;
+  list-style: none;
+  font-size: 1rem;
+}
+::placeholder {
+  font-size: 70%;
+}
+.nav__mobile-list hr {
+  margin-right: 10px;
+}
+.nav__mobile-list-user {
+  display: flex;
+}
+.nav__mobile-list-user span {
+  color: white;
+  font-size: 20px;
+}
+.nav__mobile-list-user i {
+  font-size: 1.2rem;
+  margin-right: 10px;
+  color: white;
+}
+.nav__mobile-list-user a {
+  list-style: none;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+.shopping {
+  display: flex;
+  position: relative;
+}
+.cart{
+  margin-top: 24px;
+  list-style: none;
+  font-size: 1.9rem;
+  color: white;
+}
+.dki-dnhap{
+  margin-left: 20px;
+}
